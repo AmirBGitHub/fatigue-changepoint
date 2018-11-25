@@ -51,7 +51,7 @@ p_load(R.matlab, plotly, extrafont, grDevices, gridExtra,
        knitr, kableExtra, dplyr) 
 ```
 
-In the snippet below, we extract the 15 ".mat" files in the [GitHub repository](https://github.com/fmegahed/fatigue-changepoint/tree/master/Data/Raw) (where we loaded the data to allow for the reproduction of our work). Note that these files were originally produced in [Baghdadi et al., 2018](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936?). Then, we perform several transformation steps: (a) extracting the data for the first three columns in the matlab arrays; and (b) computing three kinematic features from the data corresponding to these columns. Due to the differences between Matlab and R, this requires two nested *for* loops. The outer loop increments over the number of subjects, while the inner loop increments based on the different number of rows of data for each subject. Please see the comments within the code chunk for more details. 
+In the snippet below, we extract the 15 ".mat" files in the [GitHub repository](https://github.com/AmirBGitHub/fatigue-changepoint/tree/master/Data/Raw) (where we loaded the data to allow for the reproduction of our work). Note that these files were originally produced in [Baghdadi et al., 2018](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936?). Then, we perform several transformation steps: (a) extracting the data for the first three columns in the matlab arrays; and (b) computing three kinematic features from the data corresponding to these columns. Due to the differences between Matlab and R, this requires two nested *for* loops. The outer loop increments over the number of subjects, while the inner loop increments based on the different number of rows of data for each subject. Please see the comments within the code chunk for more details. 
 
 ```{r load_data, cache=TRUE}
 num_subjects <- seq(1, 15)
@@ -71,7 +71,7 @@ colnames(summary_df) <- c("Subject.Num", "num.rows",
 
 for (i in 1:length(num_subjects)) {
   # Reading the .mat files from GitHub
-  raw_data <- readMat(paste0("https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/Raw/Subject",num_subjects[i],".mat?raw=true"))
+  raw_data <- readMat(paste0("https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/Raw/Subject",num_subjects[i],".mat?raw=true"))
   # Compute the number of cells, and rows in each structered matrix
   raw_data_size <- lengths(raw_data) # num of cells
   num_rows <- raw_data_size / 17 # all data had 17 cols
@@ -131,7 +131,7 @@ rm(raw_data, raw_data_size, i, j, num_rows,
 save.image(file = "./Data/RGenerated/FeatureGeneration.RData")
 ```
 
-Based on the analysis above, there are **three observations** to be made. *First*, we scaled the stride length and height based on the subject's height. This in essence allows us to capture the steps as a percentage of the person's height. This reduces the between subject variablity in the data and is supported by the seminal work of [Oberg et al., 1993](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.473.947&rep=rep1&type=pdf). *Second*, we showed the first six rows from Subject 4 to provide the reader with some insights into the sampling frequeny (after the preprocessing done in [Baghdadi et al. 2018](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936)). Note that the kinematic features are computed from the sensor channels provided in their paper. *Third*, we saved the generated data into an R.data file, which can be accessed by clicking on:  [FeatureGeneration.RData](https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/FeatureGeneration.RData). We hope that this saved data allows other researchers to reproduce and/or build on our work.
+Based on the analysis above, there are **three observations** to be made. *First*, we scaled the stride length and height based on the subject's height. This in essence allows us to capture the steps as a percentage of the person's height. This reduces the between subject variablity in the data and is supported by the seminal work of [Oberg et al., 1993](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.473.947&rep=rep1&type=pdf). *Second*, we showed the first six rows from Subject 4 to provide the reader with some insights into the sampling frequeny (after the preprocessing done in [Baghdadi et al. 2018](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936)). Note that the kinematic features are computed from the sensor channels provided in their paper. *Third*, we saved the generated data into an R.data file, which can be accessed by clicking on:  [FeatureGeneration.RData](https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/FeatureGeneration.RData). We hope that this saved data allows other researchers to reproduce and/or build on our work.
 
 ****
 
@@ -196,7 +196,7 @@ After examining several outlier detection methods, i.e., boxplots for outlier de
   (C) Smoothing (i.e. a low pass filter on the data) will allow us to impute values for every stride (after an initial size window). This will allow us to preserve the successive nature of the strides, "fix" the outliers based on neighboring strides, and not throw away any observation.
 
 ## The Median Filtering Approach from the Signal Processing Literature {.tabset .tabset-fade}
-An algorithmic approach based on these observations is implemented below. Note that we are using the [median filter](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470740156) from the [fractal package](https://cran.r-project.org/web/packages/fractal/fractal.pdf) on CRAN. In the analysis below, we are applying the *median Filter*, with n=29 (i.e., the median is calculated based on a overlaping moving window of size 29 strides). We chose this window size based on the recommendation of our biomechanics expert as it allows us to: (a) ignore the effect of any turns in the direction of motion; and (b) the corresponding window size is approximately 30 seconds long (which presents an easy to remember rule for practical application). The data processed with the median filtered approach is stored at the [following location](https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/MedianFilteredData.RData) in our GitHub Repository. The median filter was also applied on the CUSUM of the features and the results from this analysis can be found at: [CusumData.RData](https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/CusumData.RData).
+An algorithmic approach based on these observations is implemented below. Note that we are using the [median filter](https://onlinelibrary.wiley.com/doi/book/10.1002/9780470740156) from the [fractal package](https://cran.r-project.org/web/packages/fractal/fractal.pdf) on CRAN. In the analysis below, we are applying the *median Filter*, with n=29 (i.e., the median is calculated based on a overlaping moving window of size 29 strides). We chose this window size based on the recommendation of our biomechanics expert as it allows us to: (a) ignore the effect of any turns in the direction of motion; and (b) the corresponding window size is approximately 30 seconds long (which presents an easy to remember rule for practical application). The data processed with the median filtered approach is stored at the [following location](https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/MedianFilteredData.RData) in our GitHub Repository. The median filter was also applied on the CUSUM of the features and the results from this analysis can be found at: [CusumData.RData](https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/CusumData.RData).
   
 
 
@@ -295,7 +295,7 @@ save(subject1_cusum, subject2_cusum, subject3_cusum,
 
 
 ## Using %Time-from-Start to Standardize the Length of Each Participant's Time-series {.tabset .tabset-fade}
-In this section, we rescale/normalize the timescale a 0-100% scale for all participants to prepare for a timeseries clustering type analysis. Specifically, we sampled the three features from the data based on a 0.05% from start. This resulted in a standardization of the number of observations within each timeseries across our 15 paricipants. Based on our increment size, each timeseries is now comprised of 2000 observations, each at 0.05% time increment from its neighouring data points. The rest of our analysis will be performed on this standardized data. The normalized data can be found at: [NormMedianFilteredData.RData](https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/NormMedianFilteredData.RData) and [NormCusumData.RData](https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/NormCusumData.RData)
+In this section, we rescale/normalize the timescale a 0-100% scale for all participants to prepare for a timeseries clustering type analysis. Specifically, we sampled the three features from the data based on a 0.05% from start. This resulted in a standardization of the number of observations within each timeseries across our 15 paricipants. Based on our increment size, each timeseries is now comprised of 2000 observations, each at 0.05% time increment from its neighouring data points. The rest of our analysis will be performed on this standardized data. The normalized data can be found at: [NormMedianFilteredData.RData](https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/NormMedianFilteredData.RData) and [NormCusumData.RData](https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/NormCusumData.RData)
 
 ```{r Data_normalization, cache=TRUE, fig.align='center', results='asis', out.width='100%', message=FALSE, warning=FALSE}
 # to load previously generated data 
@@ -434,7 +434,7 @@ To apply the *ecp approach of [Matteson and James (2014)](https://amstat.tandfon
              length(changepoints_medianf[[i]]),
              '. These changepoints are located at: ',
              paste(round(changepoints_medianf[[i]]), collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsMFData.RData">ECPChangePointsMFData.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsMFData.RData">ECPChangePointsMFData.RData</a>. </p> </source>')
       )
   cat('\n \n')
   }
@@ -500,7 +500,7 @@ load(file = "./Data/RGenerated/NormCusumData.RData")
              length(changepoints_cusum[[i]]),
              '. These changepoints are located at: ',
              paste(round(changepoints_cusum[[i]]), collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsCUSUM.RData">ECPChangePointsCUSUM.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsCUSUM.RData">ECPChangePointsCUSUM.RData</a>. </p> </source>')
       )
   cat('\n \n')
   }
@@ -524,7 +524,7 @@ Based on our results, the approach of [Matterson and James (2016)](https://amsta
   
 
 # Comparing the ECP Changepoints with Participants' Subjective Ratings  
-Throughout the experiments, participants provided their subjective ratings every 10 minutes. The ratings were based on the [Borg 6-20 RPE scale](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936). Recent literature on fatigue detection suggests that a rating of 13 can be used to estimate the onset of fatigue (see [Maman et al. (2017)](https://www.sciencedirect.com/science/article/pii/S0003687017300261) for a detailed analysis). The subjective ratings for each participant can be accessed at: [subjective-ratings-raw](https://github.com/fmegahed/fatigue-changepoint/tree/master/Data/Raw).
+Throughout the experiments, participants provided their subjective ratings every 10 minutes. The ratings were based on the [Borg 6-20 RPE scale](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936). Recent literature on fatigue detection suggests that a rating of 13 can be used to estimate the onset of fatigue (see [Maman et al. (2017)](https://www.sciencedirect.com/science/article/pii/S0003687017300261) for a detailed analysis). The subjective ratings for each participant can be accessed at: [subjective-ratings-raw](https://github.com/AmirBGitHub/fatigue-changepoint/tree/master/Data/Raw).
 
 
 ## Plots with the Median Filtered Data and their ECP Changepoints {.tabset .tabset-fade}
@@ -538,7 +538,7 @@ In this section, we perform the following tasks:
 
 ```{r RPE_AnalysisMF, cache=TRUE, fig.align='center', results='asis', out.width='100%', message=FALSE, warning=FALSE}
 RatingThresh <- 13  # based on Maman et al. 2017 
-RPE = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
+RPE = read.csv("https://raw.githubusercontent.com/AmirBGitHub/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
 colnames(RPE)[1] <- "percent.time.from.start"
 df_RPE_transformed <- melt(RPE,
                            id.vars = "percent.time.from.start",
@@ -616,7 +616,7 @@ for (i in 1:15) {
              length(changepoints_subj_ecp[[i]]),
              ". These changepoints are located at: ",
              paste(changepoints_subj_ecp[[i]], collapse = ", "),
-             '. </b> </font> The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. </p> </source>')
+             '. </b> </font> The results from the analysis above can be found at: <a href="https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. </p> </source>')
       )
   
   cat('\n \n')
@@ -639,7 +639,7 @@ In this section, we perform the following tasks:
 (C) Utilize the [e.divisive() from the ecp package](https://cran.r-project.org/web/packages/ecp/vignettes/ecp.pdf) to obtain the changepoints for the Borg Ratings. Note that this function is the univariate approach for the multiple changepoint method examined in Section 3.1. 
 ```{r RPE_Analysis, cache=TRUE, fig.align='center', results='asis', out.width='100%', message=FALSE, warning=FALSE}
 RatingThresh <- 13  # based on Maman et al. 2017 
-RPE = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
+RPE = read.csv("https://raw.githubusercontent.com/AmirBGitHub/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
 colnames(RPE)[1] <- "percent.time.from.start"
 df_RPE_transformed <- melt(RPE,
                            id.vars = "percent.time.from.start",
@@ -715,7 +715,7 @@ for (i in 1:15) {
              length(changepoints_subj_ecp[[i]]),
              ". These changepoints are located at: ",
              paste(changepoints_subj_ecp[[i]], collapse = ", "),
-             '. </b> </font> Note that the results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. This is the same link as that provided in the previous section since the RPEresults are identical. The change here was overlaying the RPE results with the CUSUM of the median filtered data and their corresponding changepoints from the ECP package (instead of directly with the median filtered data and their changepoints [also from the ECP package]). </p> </source>')
+             '. </b> </font> Note that the results from the analysis above can be found at: <a href="https://github.com/AmirBGitHub/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. This is the same link as that provided in the previous section since the RPEresults are identical. The change here was overlaying the RPE results with the CUSUM of the median filtered data and their corresponding changepoints from the ECP package (instead of directly with the median filtered data and their changepoints [also from the ECP package]). </p> </source>')
       )
              
   
@@ -803,7 +803,7 @@ We provide the overall result of clustering by overlaying the graphs of features
 load(file = "./Data/RGenerated/NormMedianFilteredData.RData")
 load(file = "./Data/RGenerated/ScaledPcaClusters.RData")
 
-RPE = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
+RPE = read.csv("https://raw.githubusercontent.com/AmirBGitHub/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
 colnames(RPE)[1] <- "percent.time.from.start"
 df_RPE_transformed <- melt(RPE,
                            id.vars = "percent.time.from.start",
@@ -852,7 +852,7 @@ for (i in 1:15) {
 
 #########################################################################
 
-demograph = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/DemographicData.csv") # to read demographic data from GitHub'
+demograph = read.csv("https://raw.githubusercontent.com/AmirBGitHub/fatigue-changepoint/master/Data/Raw/DemographicData.csv") # to read demographic data from GitHub'
 
 
 clust_1_table <- demograph[FALSE,]

@@ -433,7 +433,7 @@ for (i in 1:15) {
       )
     
   cat(' \n \n')
-  cat('<source> <p> The data processed with the median filtered approach is stored at the <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/MedianFilteredData.RData">following location</a> in our GitHub Repository.')
+  cat('<source> <p> The data processed with the median filtered approach is stored at the <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/MedianFilteredData.RData">following location</a> in our GitHub Repository.')
   cat('\n \n')
   
 }
@@ -489,7 +489,7 @@ save(subject1_medianf, subject2_medianf, subject3_medianf, subject4_medianf,
   
   cat('\n')
   
-  cat('<source> <p> The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/CusumData.RData">CusumData.RData</a>. </p> </source>')
+  cat('<source> <p> The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/CusumData.RData">CusumData.RData</a>. </p> </source>')
   cat('\n \n')
   }
 save(subject1_cusum, subject2_cusum, subject3_cusum,
@@ -513,7 +513,7 @@ For this reason, we do not think that this approach is promising. We will move o
 
 ```{r pca, ig.align='center', results='asis', out.width='65%', message=FALSE, cache=TRUE}
 RatingThresh <- 13  # based on Maman et al. 2017
-RPE = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
+RPE = read.csv("https://raw.githubusercontent.com/AmirBGithub/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
 colnames(RPE)[1] <- "time.from.start"
 df_RPE_transformed <- melt(RPE,
                            id.vars = "time.from.start",
@@ -633,7 +633,7 @@ for (i in 1:15) {
              length(changepoints_cusum_subj_ecp[[i]]),
              ". These changepoints are located at: ",
              paste(changepoints_cusum_subj_ecp[[i]], collapse = ", "),
-             '. </b> </font> The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/PCAChangepointsRPE.RData">PCAChangepointsRPE.RData</a>. </p> </source>')
+             '. </b> </font> The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/PCAChangepointsRPE.RData">PCAChangepointsRPE.RData</a>. </p> </source>')
       )
   
   cat('\n \n')
@@ -710,7 +710,7 @@ To apply the *ecp approach of [Matteson and James (2014)](https://amstat.tandfon
              length(changepoints_medianf[[i]]),
              '. These changepoints are located at: ',
              paste(round(changepoints_medianf[[i]]), collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsMFData.RData">ECPChangePointsMFData.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsMFData.RData">ECPChangePointsMFData.RData</a>. </p> </source>')
       )
   cat('\n \n')
   }
@@ -776,7 +776,7 @@ Here, we apply the ecp approach of [Matteson and James (2014)](https://amstat.ta
              length(changepoints_medianf_diff[[i]]),
              '. These changepoints are located at: ',
              paste(round(changepoints_medianf_diff[[i]]), collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsDiffMFData.RData">ECPChangePointsDiffMFData.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsDiffMFData.RData">ECPChangePointsDiffMFData.RData</a>. </p> </source>')
       )
   
   cat('\n \n')
@@ -844,7 +844,7 @@ load(file = "./Data/RGenerated/CusumData.RData")
              length(changepoints_cusum[[i]]),
              '. These changepoints are located at: ',
              paste(round(changepoints_cusum[[i]]), collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsCUSUM.RData">ECPChangePointsCUSUM.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ECPChangePointsCUSUM.RData">ECPChangePointsCUSUM.RData</a>. </p> </source>')
       )
   cat('\n \n')
   }
@@ -917,7 +917,7 @@ Notes:
              length(mcp),
              '. These changepoints are located at: ',
              paste(mcp, collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ChangePointsMedianFilterMphase1.RData">ChangePointsMedianFilterMphase1.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ChangePointsMedianFilterMphase1.RData">ChangePointsMedianFilterMphase1.RData</a>. </p> </source>')
   )
   cat('\n \n')
   }
@@ -978,7 +978,7 @@ Notes:
              length(mcp),
              '. These changepoints are located at: ',
              paste(mcp, collapse = ", "),
-             '. The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ChangePointsCusumMphase1.RData">ChangePointsCusumMphase1.RData</a>. </p> </source>')
+             '. The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ChangePointsCusumMphase1.RData">ChangePointsCusumMphase1.RData</a>. </p> </source>')
   )
   cat('\n \n')
   }
@@ -997,7 +997,7 @@ Based on the results in Sections 4.1 and 4.2, the approach of [Matterson and Jam
 In addition, from the analysis, the changepoints based on the CUSUM of the median filtered data are the most insightful. Specifically, one can discern how each participant's performance change as the experiment goes on. For example, P10 has a clear fatigued performance in the end, where the cusums of the stride length and stride height are decreasing rapidly after stride 5521.
 
 # Comparing the ECP Changepoints with Participants' Subjective Ratings  
-Throughout the experiments, participants provided their subjective ratings every 10 minutes. The ratings were based on the [Borg 6-20 RPE scale](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936). Recent literature on fatigue detection suggests that a rating of 13 can be used to estimate the onset of fatigue (see [Maman et al. (2017)](https://www.sciencedirect.com/science/article/pii/S0003687017300261) for a detailed analysis). The subjective ratings for each participant can be accessed at: [subjective-ratings-raw](https://github.com/fmegahed/fatigue-changepoint/tree/master/Data/Raw).
+Throughout the experiments, participants provided their subjective ratings every 10 minutes. The ratings were based on the [Borg 6-20 RPE scale](https://www.tandfonline.com/doi/abs/10.1080/00140139.2018.1442936). Recent literature on fatigue detection suggests that a rating of 13 can be used to estimate the onset of fatigue (see [Maman et al. (2017)](https://www.sciencedirect.com/science/article/pii/S0003687017300261) for a detailed analysis). The subjective ratings for each participant can be accessed at: [subjective-ratings-raw](https://github.com/AmirBGithub/fatigue-changepoint/tree/master/Data/Raw).
 
 
 ## Plots with the Median Filtered Data and their ECP Changepoints {.tabset .tabset-fade}
@@ -1011,7 +1011,7 @@ In this section, we perform the following tasks:
 
 ```{r RPE_AnalysisMF, cache=TRUE, fig.align='center', results='asis', out.width='100%', message=FALSE, warning=FALSE}
 RatingThresh <- 13  # based on Maman et al. 2017 
-RPE = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
+RPE = read.csv("https://raw.githubusercontent.com/AmirBGithub/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
 colnames(RPE)[1] <- "time.from.start"
 df_RPE_transformed <- melt(RPE,
                            id.vars = "time.from.start",
@@ -1110,7 +1110,7 @@ for (i in 1:15) {
              length(changepoints_cusum_subj_ecp[[i]]),
              ". These changepoints are located at: ",
              paste(changepoints_cusum_subj_ecp[[i]], collapse = ", "),
-             '. </b> </font> The results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. </p> </source>')
+             '. </b> </font> The results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. </p> </source>')
       )
   
   cat('\n \n')
@@ -1133,7 +1133,7 @@ In this section, we perform the following tasks:
 (C) Utilize the [e.divisive() from the ecp package](https://cran.r-project.org/web/packages/ecp/vignettes/ecp.pdf) to obtain the changepoints for the Borg Ratings. Note that this function is the univariate approach for the multiple changepoint method examined in Section 4.1. 
 ```{r RPE_Analysis, cache=TRUE, fig.align='center', results='asis', out.width='100%', message=FALSE, warning=FALSE}
 RatingThresh <- 13  # based on Maman et al. 2017 
-RPE = read.csv("https://raw.githubusercontent.com/fmegahed/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
+RPE = read.csv("https://raw.githubusercontent.com/AmirBGithub/fatigue-changepoint/master/Data/Raw/RPE.csv") # to read subjective rating of RPE data from GitHub'
 colnames(RPE)[1] <- "time.from.start"
 df_RPE_transformed <- melt(RPE,
                            id.vars = "time.from.start",
@@ -1230,7 +1230,7 @@ for (i in 1:15) {
              length(changepoints_cusum_subj_ecp[[i]]),
              ". These changepoints are located at: ",
              paste(changepoints_cusum_subj_ecp[[i]], collapse = ", "),
-             '. </b> </font> Note that the results from the analysis above can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. This is the same link as that provided in the previous section since the RPEresults are identical. The change here was overlaying the RPE results with the CUSUM of the median filtered data and their corresponding changepoints from the ECP package (instead of directly with the median filtered data and their changepoints [also from the ECP package]). </p> </source>')
+             '. </b> </font> Note that the results from the analysis above can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/ChangepointsRPE.RData">ChangepointsRPE.RData</a>. This is the same link as that provided in the previous section since the RPEresults are identical. The change here was overlaying the RPE results with the CUSUM of the median filtered data and their corresponding changepoints from the ECP package (instead of directly with the median filtered data and their changepoints [also from the ECP package]). </p> </source>')
       )
   
   cat('\n \n')
@@ -1371,8 +1371,8 @@ for (i in 1:15) {
 
 }
 
-  cat(paste0('</b> </font> The normalized data can be found at: <a href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/NormMedianFilteredData.RData">NormMedianFilteredData.RData</a> and <a 
-href="https://github.com/fmegahed/fatigue-changepoint/blob/master/Data/RGenerated/NormCusumData.RData">NormCusumData.RData</a> </p> </source>')
+  cat(paste0('</b> </font> The normalized data can be found at: <a href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/NormMedianFilteredData.RData">NormMedianFilteredData.RData</a> and <a 
+href="https://github.com/AmirBGithub/fatigue-changepoint/blob/master/Data/RGenerated/NormCusumData.RData">NormCusumData.RData</a> </p> </source>')
   )
 
 save(medianfilt_norm,
