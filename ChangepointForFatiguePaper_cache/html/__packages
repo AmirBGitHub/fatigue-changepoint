@@ -30,3 +30,5 @@ knitr
 kableExtra
 data.table
 RColorBrewer
+MVN
+gridExtra
