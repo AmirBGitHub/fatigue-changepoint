@@ -53,6 +53,7 @@ p_load(R.matlab, plotly, extrafont, grDevices, ggpubr,
        MALDIquant, dtwclust,
        knitr, kableExtra, dplyr, data.table,
        RColorBrewer)
+
 ```
 
 ## Feature Generation
