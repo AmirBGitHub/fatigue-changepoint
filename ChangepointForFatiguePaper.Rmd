@@ -39,7 +39,7 @@ The reader can **show** any code chunk by clicking on the *code* button. We chos
 
 # Loading Data & Generating Features 
 
-The snippet below documents the list of **R** libraries that were used in this research. For convenience, we used the \texttt{pacman} package since it allows for installing/loading the needed libraries in one step.
+The snippet below documents the list of **R** libraries that were used in this research. For convenience, we used the \textit{pacman} package since it allows for installing/loading the needed libraries in one step.
 
 ```{r error=FALSE, warning=FALSE, cache=FALSE, load_libraries, message=FALSE}
 rm(list = ls()) # clear global environment
@@ -406,7 +406,7 @@ The rescaled and then median filtered data can be found at: [NormMedianFilteredD
 
 
 ## The Nonparameteric Approach of Matteson & James (ECP) {.tabset .tabset-fade}
-In this section, we will examine the use of the approach of [Matteson and James (2014)](https://amstat.tandfonline.com/doi/abs/10.1080/01621459.2013.849605) for multiple change point analysis of our trivariate data. Our analysis takes advantage of their **R** package titled \texttt{ecp}, which is described in more details in the following paper: [James and Matteson (2014)](https://cran.r-project.org/web/packages/ecp/vignettes/ecp.pdf). The multivariate changepoint method will be applied on the median filtered data only.
+In this section, we will examine the use of the approach of [Matteson and James (2014)](https://amstat.tandfonline.com/doi/abs/10.1080/01621459.2013.849605) for multiple change point analysis of our trivariate data. Our analysis takes advantage of their **R** package titled \textit{ecp}, which is described in more details in the following paper: [James and Matteson (2014)](https://cran.r-project.org/web/packages/ecp/vignettes/ecp.pdf). The multivariate changepoint method will be applied on the median filtered data only.
 
 
 To apply the *ecp approach of [Matteson and James (2014)](https://amstat.tandfonline.com/doi/abs/10.1080/01621459.2013.849605)* on the **median filtered data**, we need to use a window size (which reflects the smallest size of a shift that is to be detected). We used $\small m_{ecp} = 2$ since it is the smallest size that converges.
@@ -668,7 +668,7 @@ for (i in 1:15) {
 ---
 
 # Time Series Clustering
-As mentioned in the paper, the time series clustering can be performed on either the scaled sensor data or on the cummulative sums of the scaled sensor data. We show the results for each approach below based on the use of heirarchical clustering, with a distance measue of \texttt{dtw}. Our clustering approach utilizes the dtwclust package. For more details on the package, the reader is referred to the following [dtwclust Vignette](http://cran.ma.imperial.ac.uk/web/packages/dtwclust/dtwclust.pdf). 
+As mentioned in the paper, the time series clustering can be performed on either the scaled sensor data or on the cummulative sums of the scaled sensor data. We show the results for each approach below based on the use of heirarchical clustering, with a distance measue of \textit{dtw}. Our clustering approach utilizes the dtwclust package. For more details on the package, the reader is referred to the following [dtwclust Vignette](http://cran.ma.imperial.ac.uk/web/packages/dtwclust/dtwclust.pdf). 
 
 ## Multivariate Time Series Clustering based on the Scaled Sensor Data
 ```{r TS_Clust_multivar, cache=TRUE, fig.align='center', results= 'asis', out.width='100%', message=FALSE, warning=FALSE}
